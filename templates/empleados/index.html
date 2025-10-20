@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Vendedores Avantika</title>
+</head>
+<body>
+   <h1>Lista de Vendedores</h1>
+    <table border="1">
+        <tr>
+            <th>Cooncepto_2</th>
+            <th>Descripcion</th>
+            <th>Estado</th>
+            <th>Linea</th>
+            <th>Coordinación</th>
+            <th>ID Coordinador</th>
+            <th>Coordinador</th>
+            <th>Correo Coordinador</th>
+            <th>Acciones</th>
+            <!-- Agrega más columnas si tienes -->
+        </tr>
+        {% for emp in vendedores %}
+        <tr> <td>{{ emp[0] }}</td>
+            <td>{{ emp[1] }}</td>
+            <td>{{ emp[2] }}</td>
+            <td>{{ emp[3] }}</td>
+            <td>{{ emp[4] }}</td>
+            <td>{{ emp[5] }}</td>
+            <td>{{ emp[6] }}</td>
+            <td>{{ emp[7] }}</td>
+            <td>Editar | 
+                <a href="/eliminar/{{ emp[0] }}">
+                    Eliminar
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
