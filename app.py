@@ -24,7 +24,7 @@ def index():
     conn = conectar_sql_server()
     if conn:
         cursor = conn.cursor()
-        cursor.execute("select * from terceros_ventas")  # Ajusta con tu tabla
+        cursor.execute("select * from terceros_ventas where eliminado = '0'")  # Ajusta con tu tabla
         vendedores = cursor.fetchall()
         conn.close()
     else:
@@ -67,7 +67,6 @@ def insertar():
             nit_ejecutivo, ejecutivo, correo_ejec, cel_ejec, ext_ejec)
         )
         conn.commit()
-
         cursor.close()
         conn.close()
 
@@ -75,6 +74,24 @@ def insertar():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     
-
+@app.route('/eliminar/<int:id>')
+def eliminar(id):
+    id = int(id)
+    conn = conectar_sql_server()
+        
+    try:
+        conn = conectar_sql_server()
+        cursor = conn.cursor()
+        cursor.execute("update terceros_ventas set eliminado = '1' where concepto_2 = ?",(id,))  # Ajusta con tu tabla
+        conn.commit()
+        cursor.close()
+        conn.close()
+        
+        return jsonify({"mensaje": "Registro eliminado correctamente"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+        
+        
+   
 if __name__ == '__main__':
     app.run(debug=True)
