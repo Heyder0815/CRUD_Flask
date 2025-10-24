@@ -1,0 +1,71 @@
+<form action="/update" method="POST" class="">
+  <h2>Editar Información</h2>
+  {% for ven in empleados %}
+  <!-- 1. Nombre -->
+  <label for="">Concepto :</label>
+  <input type="text" id="concepto_2" name="concepto_2" value="{{ ven[0] }}"><br>
+
+  <!-- 2. Apellido -->
+  <label for="">Descripcion :</label>
+  <input type="text" id="descripcion" name="descripcion" value="{{ ven[1] }}"><br>
+
+  <!-- 3. Correo -->
+<label for="">Estado</label>
+<select name="activo" id="activo" >
+    <option value="">{{ ven[2] }}</option>
+    <option value="S">Activo</option>
+    <option value="N">Deshabilitado</option>
+</select><br>
+
+  <!-- 4. Teléfono -->  
+  <label for="">Linea :</label>
+  <input type="text" id="linea" name="linea" value="{{ ven[3] }}"><br>
+
+  <!-- 5. Fecha de nacimiento -->
+  <label for="">Coordinación :</label>
+  <input type="text" id="coordinacion" name="coordinacion" value="{{ ven[4] }}"><br>
+
+  <!-- 6. Género -->
+   <label for="">Nit de Coordinador :</label>
+  <input type="text" id="nit_cordinador" name="nit_cordinador" value="{{ ven[5] }}"><br>
+
+  <!-- 7. Dirección -->
+  <label for="">Coordinador:</label>
+  <input type="text" id="cordinador" name="cordinador" value="{{ ven[6] }}"><br>
+
+  <!-- 8. Ciudad -->
+  <label for="">Correo de Coordinador:</label>
+  <input type="email" id="correo_coord" name="correo_coord" value="{{ ven[7] }}"><br>
+
+  <!-- 9. Código postal -->
+  <label for="">Celular de Coordinador:</label>
+  <input type="number" id="cel_coord" name="cel_coord" value="{{ ven[8] }}"><br>
+
+  <!-- 10. País -->
+  <label for="">Extención de Coordinador:</label>
+  <input type="number" id="ext_coord" name="ext_coord" value="{{ ven[9] }}"><br>
+
+  <!-- 11. Usuario -->
+  <label for="">Nit de Ejecutivo :</label>
+  <input type="number" id="nit_ejecutivo" name="nit_ejecutivo" value="{{ ven[10] }}"><br>
+
+  <!-- 12. Contraseña -->
+  <label for="">Ejecutivo:</label>
+  <input type="text" id="ejecutivo" name="ejecutivo" value="{{ ven[11] }}"><br>
+
+  <!-- 13. Estado -->
+   <label for="">Correo de Ejecutivo:</label>
+  <input type="email" id="correo_ejec" name="correo_ejec" value="{{ ven[12] }}"><br>
+
+  <!-- 14. Comentarios -->
+ <label for="">Celular de Ejecutivo:</label>
+  <input type="number" id="cel_ejec" name="cel_ejec" value="{{ ven[13] }}"><br>
+
+   <label for="">Extención de Ejecutivo:</label>
+  <input type="number" id="ext_ejec" name="ext_ejec" value="{{ ven[14] }}">
+
+  <br>
+  {% endfor %}
+  <!-- Botón de guardar -->
+  <button type="submit">Guardar Cambios</button>
+</form>

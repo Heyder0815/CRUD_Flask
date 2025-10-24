@@ -37,6 +37,41 @@ def create():
     
     return render_template('empleados/create.html')
 
+@app.route('/update', methods=['POST'])
+def actualizar():
+    concepto_2 = request.form.get('concepto_2')
+    descripcion = request.form.get('descripcion')
+    activo = request.form.get('activo')
+    linea = request.form.get('linea')
+    coordinacion = request.form.get('coordinacion')
+    nit_cordinador = request.form.get('nit_cordinador')
+    cordinador = request.form.get('cordinador')
+    correo_coord = request.form.get('correo_coord')
+    cel_coord = request.form.get('cel_coord')
+    ext_coord = request.form.get('ext_coord')
+    nit_ejecutivo = request.form.get('nit_ejecutivo')
+    ejecutivo = request.form.get('ejecutivo')
+    correo_ejec = request.form.get('correo_ejec')
+    cel_ejec = request.form.get('cel_ejec')
+    ext_ejec = request.form.get('ext_ejec')
+    
+    try:
+        conn = conectar_sql_server()
+        cursor = conn.cursor()
+
+        # Insertar datos con parámetros
+        cursor.execute(
+            "UPDATE terceros_ventas SET concepto_2 = ?, descripcion = ?, activo = ?, linea = ?, coodinacion = ?, nit_coord = ?, coordinador = ?, correo_coord = ?, cel_coord = ?, ext_coord = ?, nit_ejecutivo = ?, ejecutivo = ?, correo_ejec = ?, cel_ejec = ?, ext_ejec = ? where concepto_2 = ?", 
+        )
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        return jsonify({"mensaje": "Usuario Actualizado correctamente"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500    
+    
+
 @app.route('/store', methods=['POST'])
 def insertar():
     concepto_2 = request.form.get('concepto_2')
@@ -91,7 +126,17 @@ def eliminar(id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
         
-        
+@app.route('/edit/<int:id>') 
+def edit(id): 
+    
+    conn = conectar_sql_server()
+    cursor = conn.cursor()
+    cursor.execute("select * from terceros_ventas where concepto_2 = ?",(id,))
+    empleados = cursor.fetchall()
+    conn.close()
+    
+    return render_template('empleados/edit.html',empleados=empleados)
+          
    
 if __name__ == '__main__':
     app.run(debug=True)
