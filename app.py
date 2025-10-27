@@ -44,8 +44,8 @@ def actualizar():
     activo = request.form.get('activo')
     linea = request.form.get('linea')
     coordinacion = request.form.get('coordinacion')
-    nit_cordinador = request.form.get('nit_cordinador')
-    cordinador = request.form.get('cordinador')
+    nit_coord = request.form.get('nit_cordinador')
+    coordinador = request.form.get('cordinador')
     correo_coord = request.form.get('correo_coord')
     cel_coord = request.form.get('cel_coord')
     ext_coord = request.form.get('ext_coord')
@@ -54,24 +54,32 @@ def actualizar():
     correo_ejec = request.form.get('correo_ejec')
     cel_ejec = request.form.get('cel_ejec')
     ext_ejec = request.form.get('ext_ejec')
-    
+
     try:
         conn = conectar_sql_server()
         cursor = conn.cursor()
+        sql = """
+        UPDATE terceros_ventas 
+        SET concepto_2 = ?, descripcion = ?, activo = ?, linea = ?, coodinacion = ?, nit_coord = ?, coordinador = ?, correo_coord = ?, cel_coord = ?, ext_coord = ?, nit_ejecutivo = ?, ejecutivo = ?, correo_ejec = ?, cel_ejec = ?, ext_ejec = ? 
+        WHERE concepto_2 = ?
+        """
 
-        # Insertar datos con parámetros
-        cursor.execute(
-            "UPDATE terceros_ventas SET concepto_2 = ?, descripcion = ?, activo = ?, linea = ?, coodinacion = ?, nit_coord = ?, coordinador = ?, correo_coord = ?, cel_coord = ?, ext_coord = ?, nit_ejecutivo = ?, ejecutivo = ?, correo_ejec = ?, cel_ejec = ?, ext_ejec = ? where concepto_2 = ?", 
+        # ✅ Parámetros en el mismo orden que los ?
+        params = (
+            concepto_2, descripcion, activo, linea, coordinacion, nit_coord,
+            coordinador, correo_coord, cel_coord, ext_coord, nit_ejecutivo,
+            ejecutivo, correo_ejec, cel_ejec, ext_ejec, concepto_2
         )
+
+        cursor.execute(sql, params)
         conn.commit()
         cursor.close()
         conn.close()
 
-        return jsonify({"mensaje": "Usuario Actualizado correctamente"}), 201
+        return jsonify({"mensaje": "Usuario actualizado correctamente"}), 201
     except Exception as e:
-        return jsonify({"error": str(e)}), 500    
-    
-
+        return jsonify({"error": str(e)}), 500
+  
 @app.route('/store', methods=['POST'])
 def insertar():
     concepto_2 = request.form.get('concepto_2')
