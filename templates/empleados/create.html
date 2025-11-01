@@ -1,54 +1,186 @@
-<form action="/store" method="post">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Zona</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    body {
+      background-color: #f8f9fc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-    Concepto de Zona
-<input type="text" name="concepto_2" id="concepto_2"><br>
-    Descripción
-<input type="text" name="descripcion" id="descripcion"><br>  
-  
-<label for="activo">Estado</label>
-<select name="activo" id="activo" required>
-    <option value="">Seleccionar Estado</option>
-    <option value="S">Activo</option>
-    <option value="N">Deshabilitado</option>
-</select><br>
-    Linea
-<select name="linea" id="activo" required>
-    <option value="1">Linea 1</option>
-    <option value="2">Linea 2</option>
-    <option value="3">Linea 3</option>
-</select><br>
-    Coordinación
-<select name="coordinacion" id="coordinacion" required>
-    <option value="Canal Virtual">Canal Virtual</option>
-    <option value="EDUCACIÓN">EDUCACIÓN</option>
-    <option value="ESTADO 1">ESTADO 1</option>
-    <option value="ESTADO 2">ESTADO 2</option>
-    <option value="Gerencia - Iván Antequera">Gerencia</option>
-    <option value="INDUSTRIA">INDUSTRIA</option>
-    <option value="MOBILIARIO">MOBILIARIO</option>
-    <option value="PROYECTOS">PROYECTOS</option>
-</select><br>
-    Cedula Coordinador
-<input type="text" name="nit_cordinador" id="nit_cordinador"><br>
-    Coordinador
-<input type="text" name="cordinador" id="cordinador"><br>
-    Correo Coordinador
-<input type="email" name="correo_coord" id="correo_coord"><br>
-    Celular Coordinador
-<input type="number" name="cel_coord" id="cel_coord">  <br>
-    Extensión Coordinador
-<input type="text" name="ext_coord" id="ext_coord"><br>
-    Cedul _ejecutivo
-<input type="text" name="nit_ejecutivo" id="nit_ejecutivo"> <br>
-    Ejecutivo
-<input type="text" name="ejecutivo" id="ejecutivo"><br>
-    Correo ejecutivo
-<input type="text" name="correo_ejec" id="correo_ejec"><br>
-    Celular Ejecutivo
-<input type="number" name="cel_ejec" id="cel_ejct">    <br>
-    Extensión 
-<input type="text" name="ext_ejec" id="ext_ejec"><br>
+    .card {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+    }
 
-<input type="submit" value="Agregar">
+    .form-label {
+      font-weight: 600;
+      color: #374151;
+      font-size: 0.9rem;
+    }
 
-</form>
+    .form-control, .form-select {
+      border-radius: 10px;
+      padding: 10px 15px;
+      border-color: #d1d5db;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 0.25rem rgba(79, 70, 229, 0.25);
+    }
+
+    .btn-primary {
+      background-color: #4f46e5;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 25px;
+      font-weight: 500;
+    }
+
+    .btn-primary:hover {
+      background-color: #4338ca;
+    }
+
+    .btn-secondary {
+      border-radius: 10px;
+      padding: 10px 25px;
+      font-weight: 500;
+    }
+
+    .page-title {
+      color: #1f2937;
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 1300px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container py-5">
+    <div class="card">
+      <h2 class="page-title mb-4">
+        <i class="bi bi-plus-circle me-2"></i>Agregar Nueva Zona
+      </h2>
+
+      <form action="/store" method="post" class="row g-4">
+
+        <div class="col-md-4">
+          <label class="form-label">Concepto de Zona</label>
+          <input type="text" class="form-control" name="concepto_2" id="concepto_2" required>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Descripción</label>
+          <input type="text" class="form-control" name="descripcion" id="descripcion" required>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Estado</label>
+          <select class="form-select" name="activo" id="activo" required>
+            <option value="">Seleccionar Estado</option>
+            <option value="S">Activo</option>
+            <option value="N">Deshabilitado</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Línea</label>
+          <select class="form-select" name="linea" id="linea" required>
+            <option value="1">Línea 1</option>
+            <option value="2">Línea 2</option>
+            <option value="3">Línea 3</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Coordinación</label>
+          <select class="form-select" name="coordinacion" id="coordinacion" required>
+            <option value="Canal Virtual">Canal Virtual</option>
+            <option value="EDUCACIÓN">Educación</option>
+            <option value="ESTADO 1">Estado 1</option>
+            <option value="ESTADO 2">Estado 2</option>
+            <option value="Gerencia - Iván Antequera">Gerencia</option>
+            <option value="INDUSTRIA">Industria</option>
+            <option value="MOBILIARIO">Mobiliario</option>
+            <option value="PROYECTOS">Proyectos</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Cédula Coordinador</label>
+          <input type="text" class="form-control" name="nit_cordinador" id="nit_cordinador">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Coordinador</label>
+          <input type="text" class="form-control" name="cordinador" id="cordinador">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Correo Coordinador</label>
+          <input type="email" class="form-control" name="correo_coord" id="correo_coord">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Celular Coordinador</label>
+          <input type="number" class="form-control" name="cel_coord" id="cel_coord">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Extensión Coordinador</label>
+          <input type="text" class="form-control" name="ext_coord" id="ext_coord">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Cédula Ejecutivo</label>
+          <input type="text" class="form-control" name="nit_ejecutivo" id="nit_ejecutivo">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Ejecutivo</label>
+          <input type="text" class="form-control" name="ejecutivo" id="ejecutivo">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Correo Ejecutivo</label>
+          <input type="email" class="form-control" name="correo_ejec" id="correo_ejec">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Celular Ejecutivo</label>
+          <input type="number" class="form-control" name="cel_ejec" id="cel_ejec">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Extensión Ejecutivo</label>
+          <input type="text" class="form-control" name="ext_ejec" id="ext_ejec">
+        </div>
+
+        <!-- Botones -->
+        <div class="col-12 d-flex justify-content-center gap-3 mt-4">
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-check-circle me-2"></i>Agregar Zona
+          </button>
+          <a href="/" class="btn btn-secondary">
+            <i class="bi bi-x-circle me-2"></i>Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

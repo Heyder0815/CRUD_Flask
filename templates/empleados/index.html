@@ -1,36 +1,164 @@
-{% include 'header.html' %}
-   <h1>Lista de Vendedores</h1>
-    <table border="1">
-        <tr>
-            <th>Cooncepto_2</th>
-            <th>Descripcion</th>
-            <th>Estado</th>
-            <th>Linea</th>
-            <th>Coordinación</th>
-            <th>ID Coordinador</th>
-            <th>Coordinador</th>
-            <th>Correo Coordinador</th>
-            <th>Acciones</th>
-            <!-- Agrega más columnas si tienes -->
-        </tr>
-        {% for emp in vendedores %}
-        <tr> <td>{{ emp[0] }}</td>
-            <td>{{ emp[1] }}</td>
-            <td>{{ emp[2] }}</td>
-            <td>{{ emp[3] }}</td>
-            <td>{{ emp[4] }}</td>
-            <td>{{ emp[5] }}</td>
-            <td>{{ emp[6] }}</td>
-            <td>{{ emp[7] }}</td>
-            <td>
-                <a href="/edit/{{ emp[0] }}">
-                    Editar
-                </a> | 
-                <a href="/eliminar/{{ emp[0] }}">
-                    Eliminar
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-{% include 'footer.html' %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Vendedores</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    body {
+      background-color: #f8f9fc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .table thead {
+      background-color: #f8faff;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    .table thead th {
+      color: #00a0b0;
+      font-weight: 600;
+      border-bottom: none;
+      white-space: nowrap;
+    }
+
+    .search-bar {
+      width: 350px;
+    }
+
+    .btn-primary {
+      background-color: #4f46e5;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .btn-primary:hover {
+      background-color: #4338ca;
+    }
+
+    .badge-success {
+      background-color: #22c55e;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* --- Scroll interno --- */
+    .table-wrapper {
+      max-height: 400px; /* altura visible */
+      overflow-y: auto;  /* scroll vertical */
+      overflow-x: auto;  /* scroll horizontal */
+    }
+
+    .table {
+      min-width: 1300px; /* evita que se aplaste */
+    }
+
+    ::-webkit-scrollbar {
+      height: 10px;
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #c0c0c0;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a0a0a0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container my-5">
+    <div class="card p-4">
+      <h3 class="fw-semibold">Vendedores Avantika</h3>
+      <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+        <div class="input-group search-bar">
+          <input type="text" class="form-control border-end-0" placeholder="Buscar">
+          <span class="input-group-text bg-white border-start-0">
+            <i class="bi bi-search"></i>
+          </span>
+        </div>
+        <a href="/create" class="btn btn-sm btn-outline-primary">
+          <i class="bi bi-pencil"></i>
+          Crear Vendedores
+        </a>
+      </div>
+
+      <!-- Contenedor con scroll -->
+      <div class="table-wrapper">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th scope="col">N°</th>
+              <th scope="col">Concepto_2</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Línea</th>
+              <th scope="col">Coordinación</th>
+              <th scope="col">ID Coordinador</th>
+              <th scope="col">Coordinador</th>
+              <th scope="col">Correo Coordinador</th>
+              <th scope="col">Contacto del Coordinador</th>
+              <th scope="col">Extensión del Coordinador</th>
+              <th scope="col">ID Ejecutivo</th>
+              <th scope="col">Ejecutivo</th>
+              <th scope="col">Correo Ejecutivo</th>
+              <th scope="col">Contacto Ejecutivo</th>
+              <th scope="col">Extensión Ejecutivo</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for emp in vendedores %}
+            <tr>
+              <td>{{ emp[0] }}</td>
+              <td>{{ emp[1] }}</td>
+              <td>{{ emp[2] }}</td>
+              <td>{{ emp[3] }}</td>
+              <td>{{ emp[4] }}</td>
+              <td>{{ emp[5] }}</td>
+              <td>{{ emp[6] }}</td>
+              <td>{{ emp[7] }}</td>
+              <td>{{ emp[8] }}</td>
+              <td>{{ emp[9] }}</td>
+              <td>{{ emp[10] }}</td>
+              <td>{{ emp[11] }}</td>
+              <td>{{ emp[12] }}</td>
+              <td>{{ emp[13] }}</td>
+              <td>{{ emp[14] }}</td>
+              <td>{{ emp[15] }}</td>
+              <td style="white-space: nowrap;">
+                  <a href="/edit/{{ emp[0] }}" class="btn btn-sm btn-outline-primary me-2">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <a href="/eliminar/{{ emp[0] }}" class="btn btn-sm btn-outline-danger">
+                    <i class="bi bi-trash"></i>
+                  </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

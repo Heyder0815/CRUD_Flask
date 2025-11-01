@@ -39,6 +39,7 @@ def create():
 
 @app.route('/update', methods=['POST'])
 def actualizar():
+    id = request.form.get('id')
     concepto_2 = request.form.get('concepto_2')
     descripcion = request.form.get('descripcion')
     activo = request.form.get('activo')
@@ -61,14 +62,14 @@ def actualizar():
         sql = """
         UPDATE terceros_ventas 
         SET concepto_2 = ?, descripcion = ?, activo = ?, linea = ?, coodinacion = ?, nit_coord = ?, coordinador = ?, correo_coord = ?, cel_coord = ?, ext_coord = ?, nit_ejecutivo = ?, ejecutivo = ?, correo_ejec = ?, cel_ejec = ?, ext_ejec = ? 
-        WHERE concepto_2 = ?
+        WHERE id = ?
         """
 
         # ✅ Parámetros en el mismo orden que los ?
         params = (
             concepto_2, descripcion, activo, linea, coordinacion, nit_coord,
             coordinador, correo_coord, cel_coord, ext_coord, nit_ejecutivo,
-            ejecutivo, correo_ejec, cel_ejec, ext_ejec, concepto_2
+            ejecutivo, correo_ejec, cel_ejec, ext_ejec, id
         )
 
         cursor.execute(sql, params)
@@ -125,7 +126,7 @@ def eliminar(id):
     try:
         conn = conectar_sql_server()
         cursor = conn.cursor()
-        cursor.execute("update terceros_ventas set eliminado = '1' where concepto_2 = ?",(id,))  # Ajusta con tu tabla
+        cursor.execute("update terceros_ventas set eliminado = '1' where id = ?",(id,))  # Ajusta con tu tabla
         conn.commit()
         cursor.close()
         conn.close()
@@ -139,7 +140,7 @@ def edit(id):
     
     conn = conectar_sql_server()
     cursor = conn.cursor()
-    cursor.execute("select * from terceros_ventas where concepto_2 = ?",(id,))
+    cursor.execute("select * from terceros_ventas where id = ?",(id,))
     empleados = cursor.fetchall()
     conn.close()
     

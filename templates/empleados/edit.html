@@ -1,71 +1,180 @@
-<form action="/update" method="POST" class="">
-  <h2>Editar Información</h2>
-  {% for ven in empleados %}
-  <!-- 1. Nombre -->
-  <label for="">Concepto :</label>
-  <input type="text" id="concepto_2" name="concepto_2" value="{{ ven[0] }}" ><br>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Información</title>
 
-  <!-- 2. Apellido -->
-  <label for="">Descripcion :</label>
-  <input type="text" id="descripcion" name="descripcion" value="{{ ven[1] }}"><br>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <!-- 3. Correo -->
-<label for="">Estado</label>
-<select name="activo" id="activo" >
-    <option value="">{{ ven[2] }}</option>
-    <option value="S">Activo</option>
-    <option value="N">Deshabilitado</option>
-</select><br>
+  <style>
+    body {
+      background-color: #f8f9fc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
 
-  <!-- 4. Teléfono -->  
-  <label for="">Linea :</label>
-  <input type="text" id="linea" name="linea" value="{{ ven[3] }}"><br>
+    .card {
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+    }
 
-  <!-- 5. Fecha de nacimiento -->
-  <label for="">Coordinación :</label>
-  <input type="text" id="coordinacion" name="coordinacion" value="{{ ven[4] }}"><br>
+    .form-label {
+      font-weight: 600;
+      color: #374151;
+      font-size: 0.9rem;
+    }
 
-  <!-- 6. Género -->
-   <label for="">Nit de Coordinador :</label>
-  <input type="text" id="nit_cordinador" name="nit_cordinador" value="{{ ven[5] }}"><br>
+    .form-control, .form-select {
+      border-radius: 10px;
+      padding: 10px 15px;
+      border-color: #d1d5db;
+    }
 
-  <!-- 7. Dirección -->
-  <label for="">Coordinador:</label>
-  <input type="text" id="cordinador" name="cordinador" value="{{ ven[6] }}"><br>
+    .form-control:focus, .form-select:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 0.25rem rgba(79, 70, 229, 0.25);
+    }
 
-  <!-- 8. Ciudad -->
-  <label for="">Correo de Coordinador:</label>
-  <input type="email" id="correo_coord" name="correo_coord" value="{{ ven[7] }}"><br>
+    .btn-primary {
+      background-color: #4f46e5;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 25px;
+      font-weight: 500;
+    }
 
-  <!-- 9. Código postal -->
-  <label for="">Celular de Coordinador:</label>
-  <input type="number" id="cel_coord" name="cel_coord" value="{{ ven[8] }}"><br>
+    .btn-primary:hover {
+      background-color: #4338ca;
+    }
 
-  <!-- 10. País -->
-  <label for="">Extención de Coordinador:</label>
-  <input type="number" id="ext_coord" name="ext_coord" value="{{ ven[9] }}"><br>
+    .btn-secondary {
+      border-radius: 10px;
+      padding: 10px 25px;
+      font-weight: 500;
+    }
 
-  <!-- 11. Usuario -->
-  <label for="">Nit de Ejecutivo :</label>
-  <input type="number" id="nit_ejecutivo" name="nit_ejecutivo" value="{{ ven[10] }}"><br>
+    .page-title {
+      color: #1f2937;
+      font-weight: 700;
+    }
 
-  <!-- 12. Contraseña -->
-  <label for="">Ejecutivo:</label>
-  <input type="text" id="ejecutivo" name="ejecutivo" value="{{ ven[11] }}"><br>
+    .container {
+      max-width: 1300px;
+    }
+  </style>
+</head>
 
-  <!-- 13. Estado -->
-   <label for="">Correo de Ejecutivo:</label>
-  <input type="email" id="correo_ejec" name="correo_ejec" value="{{ ven[12] }}"><br>
+<body>
+  <div class="container py-5">
+    <div class="card">
+      <h2 class="page-title mb-4"><i class="bi bi-pencil-square me-2"></i>Editar Información</h2>
 
-  <!-- 14. Comentarios -->
- <label for="">Celular de Ejecutivo:</label>
-  <input type="number" id="cel_ejec" name="cel_ejec" value="{{ ven[13] }}"><br>
+      <form action="/update" method="POST" class="row g-4">
+        {% for ven in empleados %}
+        <input type="hidden" id="id" name="id" value="{{ ven[0] }}">
 
-   <label for="">Extención de Ejecutivo:</label>
-  <input type="number" id="ext_ejec" name="ext_ejec" value="{{ ven[14] }}">
+        <!-- Cada campo ocupa 1/3 de ancho en pantallas grandes -->
+        <div class="col-md-4">
+          <label class="form-label" for="concepto_2">Concepto</label>
+          <input type="text" class="form-control" id="concepto_2" name="concepto_2" value="{{ ven[1] }}">
+        </div>
 
-  <br>
-  {% endfor %}
-  <!-- Botón de guardar -->
-  <button type="submit">Guardar Cambios</button>
-</form>
+        <div class="col-md-4">
+          <label class="form-label" for="descripcion">Descripción</label>
+          <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{ ven[2] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="activo">Estado</label>
+          <select class="form-select" name="activo" id="activo">
+            <option selected>{{ ven[3] }}</option>
+            <option value="S">Activo</option>
+            <option value="N">Deshabilitado</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="linea">Línea</label>
+          <input type="text" class="form-control" id="linea" name="linea" value="{{ ven[4] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="coordinacion">Coordinación</label>
+          <input type="text" class="form-control" id="coordinacion" name="coordinacion" value="{{ ven[5] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="nit_cordinador">NIT Coordinador</label>
+          <input type="text" class="form-control" id="nit_cordinador" name="nit_cordinador" value="{{ ven[6] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="cordinador">Coordinador</label>
+          <input type="text" class="form-control" id="cordinador" name="cordinador" value="{{ ven[7] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="correo_coord">Correo Coordinador</label>
+          <input type="email" class="form-control" id="correo_coord" name="correo_coord" value="{{ ven[8] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="cel_coord">Celular Coordinador</label>
+          <input type="number" class="form-control" id="cel_coord" name="cel_coord" value="{{ ven[9] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="ext_coord">Extensión Coordinador</label>
+          <input type="number" class="form-control" id="ext_coord" name="ext_coord" value="{{ ven[10] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="nit_ejecutivo">NIT Ejecutivo</label>
+          <input type="number" class="form-control" id="nit_ejecutivo" name="nit_ejecutivo" value="{{ ven[11] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="ejecutivo">Ejecutivo</label>
+          <input type="text" class="form-control" id="ejecutivo" name="ejecutivo" value="{{ ven[12] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="correo_ejec">Correo Ejecutivo</label>
+          <input type="email" class="form-control" id="correo_ejec" name="correo_ejec" value="{{ ven[13] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="cel_ejec">Celular Ejecutivo</label>
+          <input type="number" class="form-control" id="cel_ejec" name="cel_ejec" value="{{ ven[14] }}">
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label" for="ext_ejec">Extensión Ejecutivo</label>
+          <input type="number" class="form-control" id="ext_ejec" name="ext_ejec" value="{{ ven[15] }}">
+        </div>
+
+        {% endfor %}
+
+        <!-- Botones -->
+        <div class="col-12 d-flex justify-content-center gap-3 mt-4">
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-save me-2"></i>Guardar Cambios
+          </button>
+          <a href="/" class="btn btn-secondary">
+            <i class="bi bi-arrow-left me-2"></i>Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
