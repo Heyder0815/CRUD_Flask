@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template,request,jsonify
+from flask import redirect, url_for
 import pyodbc
 
 app = Flask(__name__)
@@ -77,7 +78,7 @@ def actualizar():
         cursor.close()
         conn.close()
 
-        return jsonify({"mensaje": "Usuario actualizado correctamente"}), 201
+        return redirect(url_for('index'))
     except Exception as e:
         return jsonify({"error": str(e)}), 500
   
@@ -131,7 +132,7 @@ def eliminar(id):
         cursor.close()
         conn.close()
         
-        return jsonify({"mensaje": "Registro eliminado correctamente"}), 201
+        return redirect(url_for('index'))
     except Exception as e:
         return jsonify({"error": str(e)}), 500
         
