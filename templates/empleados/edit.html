@@ -90,14 +90,18 @@
           <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{ ven[2] }}">
         </div>
 
-        <div class="col-md-4">
-          <label class="form-label" for="activo">Estado</label>
-          <select class="form-select" name="activo" id="activo">
-            <option selected>{{ ven[3] }}</option>
-            <option value="S">Activo</option>
-            <option value="N">Deshabilitado</option>
-          </select>
-        </div>
+<div class="col-md-4">
+  <label class="form-label" for="activo">Estado</label>
+  <select class="form-select" name="activo" id="activo">
+    {% if ven[3] == 'S' %}
+      <option selected value="S">Habilitado</option>
+      <option value="N">Deshabilitar</option>
+    {% else %}
+      <option selected value="N">Deshabilitado</option>
+      <option value="S">Habilitar</option>
+    {% endif %}
+  </select>
+</div>
 
         <div class="col-md-4">
           <label class="form-label" for="linea">Línea</label>
