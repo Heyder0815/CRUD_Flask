@@ -186,41 +186,41 @@
           <tbody>
             {% for emp in vendedores %}
             <tr>
-              <td>{{ emp[0] }}</td>
-              <td>{{ emp[1] }}</td>
-              <td>{{ emp[2] }}</td>
+              <td>{{ emp['id'] }}</td>
+              <td>{{ emp['concepto_2'] }}</td>
+              <td>{{ emp['descripcion'] }}</td>
               <td>
-                <span class="{{ 'estado-habilitado' if emp[3] == 'S' else 'estado-deshabilitado' }}">
-                  {{ 'Habilitado' if emp[3] == 'S' else 'Deshabilitado' }}
+                <span class="{{ 'estado-habilitado' if emp['activo'] == 'S' else 'estado-deshabilitado' }}">
+                  {{ 'Habilitado' if emp['activo'] == 'S' else 'Deshabilitado' }}
                 </span>
               </td>
-              <td>{{ emp[4] }}</td>
-              <td>{{ emp[5] }}</td>
-              <td>{{ emp[6] }}</td>
-              <td>{{ emp[7] }}</td>
-              <td>{{ emp[8] }}</td>
-              <td>{{ emp[9] }}</td>
-              <td>{{ emp[10] }}</td>
-              <td>{{ emp[11] }}</td>
-              <td>{{ emp[12] }}</td>
-              <td>{{ emp[13] }}</td>
-              <td>{{ emp[14] }}</td>
-              <td>{{ emp[15] }}</td>
+              <td>{{ emp['linea'] }}</td>
+              <td>{{ emp['coodinacion'] }}</td>
+              <td>{{ emp['nit_coord'] }}</td>
+              <td>{{ emp['coordinador'] }}</td>
+              <td>{{ emp['correo_coord'] }}</td>
+              <td>{{ emp['cel_coord'] }}</td>
+              <td>{{ emp['ext_coord'] }}</td>
+              <td>{{ emp['nit_ejecutivo'] }}</td>
+              <td>{{ emp['ejecutivo'] }}</td>
+              <td>{{ emp['correo_ejec'] }}</td>
+              <td>{{ emp['cel_ejec'] }}</td>
+              <td>{{ emp['ext_ejec'] }}</td>
               <td>
                 <div class="d-flex justify-content-start gap-2">
-                  <a href="/edit/{{ emp[0] }}" class="btn btn-sm btn-outline-primary" title="Editar">
+                  <a href="/edit/{{ emp['id'] }}" class="btn btn-sm btn-outline-primary" title="Editar">
                     <i class="bi bi-pencil-square"></i>
                   </a>
                   <button class="btn btn-sm btn-outline-danger"
                           data-bs-toggle="modal"
-                          data-bs-target="#confirmarEliminar{{ emp[0] }}"
+                          data-bs-target="#confirmarEliminar{{ emp['id'] }}"
                           title="Eliminar">
                     <i class="bi bi-trash"></i>
                   </button>
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="confirmarEliminar{{ emp[0] }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="confirmarEliminar{{ emp['id'] }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header bg-danger text-white">
@@ -234,7 +234,7 @@
                         <strong>Esta acción no se puede deshacer.</strong>
                       </div>
                       <div class="modal-footer">
-                        <a href="/eliminar/{{ emp[0] }}" class="btn btn-danger">Eliminar</a>
+                        <a href="/eliminar/{{ emp['id'] }}" class="btn btn-danger">Eliminar</a>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                       </div>
                     </div>

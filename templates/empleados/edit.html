@@ -77,23 +77,23 @@
 
       <form action="/update" method="POST" class="row g-4">
         {% for ven in empleados %}
-        <input type="hidden" id="id" name="id" value="{{ ven[0] }}">
+        <input type="hidden" id="id" name="id" value="{{ ven['id'] }}">
 
         <!-- Cada campo ocupa 1/3 de ancho en pantallas grandes -->
         <div class="col-md-4">
           <label class="form-label" for="concepto_2">Concepto</label>
-          <input type="text" class="form-control" id="concepto_2" name="concepto_2" value="{{ ven[1] }}">
+          <input type="text" class="form-control" id="concepto_2" name="concepto_2" value="{{ ven['concepto_2'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="descripcion">Descripción</label>
-          <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{ ven[2] }}">
+          <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{ ven['descripcion'] }}">
         </div>
 
 <div class="col-md-4">
   <label class="form-label" for="activo">Estado</label>
   <select class="form-select" name="activo" id="activo">
-    {% if ven[3] == 'S' %}
+    {% if ven['activo'] == 'S' %}
       <option selected value="S">Habilitado</option>
       <option value="N">Deshabilitar</option>
     {% else %}
@@ -105,62 +105,62 @@
 
         <div class="col-md-4">
           <label class="form-label" for="linea">Línea</label>
-          <input type="text" class="form-control" id="linea" name="linea" value="{{ ven[4] }}">
+          <input type="text" class="form-control" id="linea" name="linea" value="{{ ven['linea'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="coordinacion">Coordinación</label>
-          <input type="text" class="form-control" id="coordinacion" name="coordinacion" value="{{ ven[5] }}">
+          <input type="text" class="form-control" id="coordinacion" name="coordinacion" value="{{ ven['coodinacion'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="nit_cordinador">NIT Coordinador</label>
-          <input type="text" class="form-control" id="nit_cordinador" name="nit_cordinador" value="{{ ven[6] }}">
+          <input type="text" class="form-control" id="nit_cordinador" name="nit_cordinador" value="{{ ven['nit_coord'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="cordinador">Coordinador</label>
-          <input type="text" class="form-control" id="cordinador" name="cordinador" value="{{ ven[7] }}">
+          <input type="text" class="form-control" id="cordinador" name="cordinador" value="{{ ven['coordinador'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="correo_coord">Correo Coordinador</label>
-          <input type="email" class="form-control" id="correo_coord" name="correo_coord" value="{{ ven[8] }}">
+          <input type="email" class="form-control" id="correo_coord" name="correo_coord" value="{{ ven['correo_coord'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="cel_coord">Celular Coordinador</label>
-          <input type="number" class="form-control" id="cel_coord" name="cel_coord" value="{{ ven[9] }}">
+          <input type="number" class="form-control" id="cel_coord" name="cel_coord" value="{{ ven['cel_coord'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="ext_coord">Extensión Coordinador</label>
-          <input type="number" class="form-control" id="ext_coord" name="ext_coord" value="{{ ven[10] }}">
+          <input type="number" class="form-control" id="ext_coord" name="ext_coord" value="{{ ven['ext_coord'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="nit_ejecutivo">NIT Ejecutivo</label>
-          <input type="number" class="form-control" id="nit_ejecutivo" name="nit_ejecutivo" value="{{ ven[11] }}">
+          <input type="number" class="form-control" id="nit_ejecutivo" name="nit_ejecutivo" value="{{ ven['nit_ejecutivo'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="ejecutivo">Ejecutivo</label>
-          <input type="text" class="form-control" id="ejecutivo" name="ejecutivo" value="{{ ven[12] }}">
+          <input type="text" class="form-control" id="ejecutivo" name="ejecutivo" value="{{ ven['ejecutivo'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="correo_ejec">Correo Ejecutivo</label>
-          <input type="email" class="form-control" id="correo_ejec" name="correo_ejec" value="{{ ven[13] }}">
+          <input type="email" class="form-control" id="correo_ejec" name="correo_ejec" value="{{ ven['correo_ejec'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="cel_ejec">Celular Ejecutivo</label>
-          <input type="number" class="form-control" id="cel_ejec" name="cel_ejec" value="{{ ven[14] }}">
+          <input type="number" class="form-control" id="cel_ejec" name="cel_ejec" value="{{ ven['cel_ejec'] }}">
         </div>
 
         <div class="col-md-4">
           <label class="form-label" for="ext_ejec">Extensión Ejecutivo</label>
-          <input type="number" class="form-control" id="ext_ejec" name="ext_ejec" value="{{ ven[15] }}">
+          <input type="number" class="form-control" id="ext_ejec" name="ext_ejec" value="{{ ven['ext_ejec'] }}">
         </div>
 
         {% endfor %}
